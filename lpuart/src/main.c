@@ -17,7 +17,7 @@ const struct device *const uart_dev = DEVICE_DT_GET(UART_NODE);
 
 int main(void)
 {
-	const char *message = "Hello World!\n";
+	const char *message = "Message from lpUART\n";
 	
 	if (!device_is_ready(uart_dev)) {
 		return 0;

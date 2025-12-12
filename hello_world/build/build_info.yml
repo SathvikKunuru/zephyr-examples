@@ -1,0 +1,58 @@
+cmake:
+  application:
+    configuration-dir: '/home/sathvik/zephyrproject/my_apps/hello_world'
+    source-dir: '/home/sathvik/zephyrproject/my_apps/hello_world'
+  board:
+    name: 'custom_u575vit6q'
+    path:
+     - '/home/sathvik/zephyrproject/zephyr/boards/st/custom_u575vit6q'
+    qualifiers: 'stm32u575xx'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/home/sathvik/zephyrproject/zephyr/dts/bindings'
+    files:
+     - '/home/sathvik/zephyrproject/zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts'
+    include-dirs:
+     - '/home/sathvik/zephyrproject/modules/hal/ambiq/dts'
+     - '/home/sathvik/zephyrproject/modules/hal/atmel/include'
+     - '/home/sathvik/zephyrproject/modules/hal/bouffalolab/include'
+     - '/home/sathvik/zephyrproject/modules/hal/bouffalolab/include/zephyr'
+     - '/home/sathvik/zephyrproject/modules/hal/gigadevice/include'
+     - '/home/sathvik/zephyrproject/modules/hal/microchip/include'
+     - '/home/sathvik/zephyrproject/modules/hal/microchip/dts'
+     - '/home/sathvik/zephyrproject/modules/hal/nuvoton/dts'
+     - '/home/sathvik/zephyrproject/modules/hal/nxp/dts'
+     - '/home/sathvik/zephyrproject/modules/hal/stm32/dts'
+     - '/home/sathvik/zephyrproject/modules/hal/ti/dts'
+     - '/home/sathvik/zephyrproject/zephyr/include'
+     - '/home/sathvik/zephyrproject/zephyr/include/zephyr'
+     - '/home/sathvik/zephyrproject/zephyr/dts/common'
+     - '/home/sathvik/zephyrproject/zephyr/dts/vendor'
+     - '/home/sathvik/zephyrproject/zephyr/dts/rx'
+     - '/home/sathvik/zephyrproject/zephyr/dts/x86'
+     - '/home/sathvik/zephyrproject/zephyr/dts/xtensa'
+     - '/home/sathvik/zephyrproject/zephyr/dts/sparc'
+     - '/home/sathvik/zephyrproject/zephyr/dts/riscv'
+     - '/home/sathvik/zephyrproject/zephyr/dts/posix'
+     - '/home/sathvik/zephyrproject/zephyr/dts/arm64'
+     - '/home/sathvik/zephyrproject/zephyr/dts/arm'
+     - '/home/sathvik/zephyrproject/zephyr/dts/arc'
+     - '/home/sathvik/zephyrproject/zephyr/dts'
+  kconfig:
+    files:
+     - '/home/sathvik/zephyrproject/zephyr/boards/st/custom_u575vit6q/custom_u575vit6q_defconfig'
+     - '/home/sathvik/zephyrproject/my_apps/hello_world/prj.conf'
+    user-files:
+     - '/home/sathvik/zephyrproject/my_apps/hello_world/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/home/sathvik/zephyr-sdk-0.17.4'
+  zephyr:
+    version: '4.3.99'
+    zephyr-base: '/home/sathvik/zephyrproject/zephyr'
+version: '0.1.0'
+west:
+  command: '/home/sathvik/zephyrproject/.venv/bin/west build -b custom_u575vit6q -p always'
+  topdir: '/home/sathvik/zephyrproject'
+  version: '1.5.0'

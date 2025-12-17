@@ -1,5 +1,0 @@
-west:
-  command: /home/sathvik/zephyrproject/.venv/bin/west build -b custom_u575vit6q -p
-    always
-  topdir: /home/sathvik/zephyrproject
-  version: 1.5.0

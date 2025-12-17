@@ -1,0 +1,1544 @@
+/dts-v1/;
+
+/* node '/' defined in zephyr/dts/common/skeleton.dtsi:9 */
+/ {
+	#address-cells = < 0x1 >;               /* in zephyr/dts/common/skeleton.dtsi:10 */
+	#size-cells = < 0x1 >;                  /* in zephyr/dts/common/skeleton.dtsi:11 */
+	model = "STM32U575 Custom Board VIT6Q"; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:8 */
+	compatible = "st,stm32u575";            /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:9 */
+
+	/* node '/chosen' defined in zephyr/dts/common/skeleton.dtsi:13 */
+	chosen {
+		zephyr,entropy = &rng;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:28 */
+		zephyr,flash-controller = &flash; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:29 */
+		zephyr,sram = &sram0;             /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:12 */
+		zephyr,flash = &flash0;           /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:13 */
+		zephyr,console = &cdc_acm_uart0;  /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:14 */
+		zephyr,udc0 = &usbotg_fs;         /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:15 */
+	};
+
+	/* node '/aliases' defined in zephyr/dts/common/skeleton.dtsi:15 */
+	aliases {
+	};
+
+	/* node '/soc' defined in zephyr/dts/arm/armv8-m.dtsi:6 */
+	soc {
+		#address-cells = < 0x1 >;     /* in zephyr/dts/arm/armv8-m.dtsi:7 */
+		#size-cells = < 0x1 >;        /* in zephyr/dts/arm/armv8-m.dtsi:8 */
+		interrupt-parent = < &nvic >; /* in zephyr/dts/arm/armv8-m.dtsi:10 */
+		ranges;                       /* in zephyr/dts/arm/armv8-m.dtsi:11 */
+		compatible = "st,stm32u575",
+		             "st,stm32u5",
+		             "simple-bus";    /* in zephyr/dts/arm/st/u5/stm32u575.dtsi:23 */
+
+		/* node '/soc/interrupt-controller@e000e100' defined in zephyr/dts/arm/armv8-m.dtsi:13 */
+		nvic: interrupt-controller@e000e100 {
+			#address-cells = < 0x1 >;            /* in zephyr/dts/arm/armv8-m.dtsi:14 */
+			compatible = "arm,v8m-nvic";         /* in zephyr/dts/arm/armv8-m.dtsi:15 */
+			reg = < 0xe000e100 0xc00 >;          /* in zephyr/dts/arm/armv8-m.dtsi:16 */
+			interrupt-controller;                /* in zephyr/dts/arm/armv8-m.dtsi:17 */
+			#interrupt-cells = < 0x2 >;          /* in zephyr/dts/arm/armv8-m.dtsi:18 */
+			arm,num-irq-priority-bits = < 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1095 */
+			phandle = < 0x1 >;                   /* in zephyr/dts/arm/armv8-m.dtsi:10 */
+		};
+
+		/* node '/soc/timer@e000e010' defined in zephyr/dts/arm/armv8-m.dtsi:21 */
+		systick: timer@e000e010 {
+			compatible = "arm,armv8m-systick"; /* in zephyr/dts/arm/armv8-m.dtsi:22 */
+			reg = < 0xe000e010 0x10 >;         /* in zephyr/dts/arm/armv8-m.dtsi:23 */
+		};
+
+		/* node '/soc/flash-controller@40022000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:164 */
+		flash: flash-controller@40022000 {
+			compatible = "st,stm32-flash-controller",
+			             "st,stm32l5-flash-controller"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:165 */
+			reg = < 0x40022000 0x400 >;                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:166 */
+			interrupts = < 0x6 0x0 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:167 */
+			#address-cells = < 0x1 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:169 */
+			#size-cells = < 0x1 >;                      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:170 */
+
+			/* node '/soc/flash-controller@40022000/flash@8000000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:172 */
+			flash0: flash@8000000 {
+				compatible = "st,stm32-nv-flash",
+				             "soc-nv-flash";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:173 */
+				write-block-size = < 0x10 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:175 */
+				erase-block-size = < 0x2000 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:176 */
+				max-erase-time = < 0x5 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:178 */
+				reg = < 0x8000000 0x200000 >;     /* in zephyr/dts/arm/st/u5/stm32u575Xi.dtsi:13 */
+
+				/* node '/soc/flash-controller@40022000/flash@8000000/partitions' defined in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:94 */
+				partitions {
+					compatible = "fixed-partitions"; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:95 */
+					#address-cells = < 0x1 >;        /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:96 */
+					#size-cells = < 0x1 >;           /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:97 */
+
+					/* node '/soc/flash-controller@40022000/flash@8000000/partitions/partition@0' defined in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:99 */
+					boot_partition: partition@0 {
+						label = "mcuboot";     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:100 */
+						reg = < 0x0 0x10000 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:101 */
+					};
+
+					/* node '/soc/flash-controller@40022000/flash@8000000/partitions/partition@10000' defined in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:104 */
+					slot0_partition: partition@10000 {
+						label = "image-0";         /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:105 */
+						reg = < 0x10000 0xe8000 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:106 */
+					};
+
+					/* node '/soc/flash-controller@40022000/flash@8000000/partitions/partition@f8000' defined in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:109 */
+					slot1_partition: partition@f8000 {
+						label = "image-1";         /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:110 */
+						reg = < 0xf8000 0xe8000 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:111 */
+					};
+
+					/* node '/soc/flash-controller@40022000/flash@8000000/partitions/partition@1e0000' defined in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:114 */
+					storage_partition: partition@1e0000 {
+						label = "storage";          /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:115 */
+						reg = < 0x1e0000 0x20000 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:116 */
+					};
+				};
+			};
+		};
+
+		/* node '/soc/rcc@46020c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:182 */
+		rcc: rcc@46020c00 {
+			compatible = "st,stm32u5-rcc";   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:183 */
+			clocks-controller;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:184 */
+			#clock-cells = < 0x2 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:185 */
+			reg = < 0x46020c00 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:186 */
+			clocks = < &pll1 >;              /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:54 */
+			clock-frequency = < 0x9896800 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:55 */
+			ahb-prescaler = < 0x1 >;         /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:56 */
+			apb1-prescaler = < 0x1 >;        /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:57 */
+			apb2-prescaler = < 0x1 >;        /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:58 */
+			apb3-prescaler = < 0x1 >;        /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:59 */
+			phandle = < 0x3 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:200 */
+
+			/* node '/soc/rcc@46020c00/reset-controller' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:188 */
+			rctl: reset-controller {
+				compatible = "st,stm32-rcc-rctl"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:189 */
+				#reset-cells = < 0x1 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:190 */
+				phandle = < 0x4 >;                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:307 */
+			};
+		};
+
+		/* node '/soc/interrupt-controller@46022000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:194 */
+		exti: interrupt-controller@46022000 {
+			compatible = "st,stm32g0-exti",
+			             "st,stm32-exti";   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:195 */
+			interrupt-controller;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:196 */
+			#interrupt-cells = < 0x1 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:197 */
+			#address-cells = < 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:198 */
+			reg = < 0x46022000 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:199 */
+			clocks = < &rcc 0xa8 0x2 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:200 */
+			num-lines = < 0x20 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:201 */
+			interrupts = < 0xb 0x0 >,
+			             < 0xc 0x0 >,
+			             < 0xd 0x0 >,
+			             < 0xe 0x0 >,
+			             < 0xf 0x0 >,
+			             < 0x10 0x0 >,
+			             < 0x11 0x0 >,
+			             < 0x12 0x0 >,
+			             < 0x13 0x0 >,
+			             < 0x14 0x0 >,
+			             < 0x15 0x0 >,
+			             < 0x16 0x0 >,
+			             < 0x17 0x0 >,
+			             < 0x18 0x0 >,
+			             < 0x19 0x0 >,
+			             < 0x1a 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:202 */
+			interrupt-names = "line0",
+			                  "line1",
+			                  "line2",
+			                  "line3",
+			                  "line4",
+			                  "line5",
+			                  "line6",
+			                  "line7",
+			                  "line8",
+			                  "line9",
+			                  "line10",
+			                  "line11",
+			                  "line12",
+			                  "line13",
+			                  "line14",
+			                  "line15";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:206 */
+			line-ranges = < 0x0 0x1 >,
+			              < 0x1 0x1 >,
+			              < 0x2 0x1 >,
+			              < 0x3 0x1 >,
+			              < 0x4 0x1 >,
+			              < 0x5 0x1 >,
+			              < 0x6 0x1 >,
+			              < 0x7 0x1 >,
+			              < 0x8 0x1 >,
+			              < 0x9 0x1 >,
+			              < 0xa 0x1 >,
+			              < 0xb 0x1 >,
+			              < 0xc 0x1 >,
+			              < 0xd 0x1 >,
+			              < 0xe 0x1 >,
+			              < 0xf 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:210 */
+		};
+
+		/* node '/soc/pin-controller@42020000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:216 */
+		pinctrl: pin-controller@42020000 {
+			compatible = "st,stm32-pinctrl"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:217 */
+			#address-cells = < 0x1 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:218 */
+			#size-cells = < 0x1 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:219 */
+			reg = < 0x42020000 0x2000 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:220 */
+
+			/* node '/soc/pin-controller@42020000/gpio@42020000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:222 */
+			gpioa: gpio@42020000 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:223 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:224 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:225 */
+				reg = < 0x42020000 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:226 */
+				clocks = < &rcc 0x8c 0x1 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:227 */
+				status = "okay";              /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:63 */
+				phandle = < 0x8 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:952 */
+			};
+
+			/* node '/soc/pin-controller@42020000/gpio@42020400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:230 */
+			gpiob: gpio@42020400 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:231 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:232 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:233 */
+				reg = < 0x42020400 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:234 */
+				clocks = < &rcc 0x8c 0x2 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:235 */
+				status = "okay";              /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:67 */
+				phandle = < 0x9 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:952 */
+			};
+
+			/* node '/soc/pin-controller@42020000/gpio@42020800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:238 */
+			gpioc: gpio@42020800 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:239 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:240 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:241 */
+				reg = < 0x42020800 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:242 */
+				clocks = < &rcc 0x8c 0x4 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:243 */
+				status = "okay";              /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:71 */
+				phandle = < 0xb >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:959 */
+			};
+
+			/* node '/soc/pin-controller@42020000/gpio@42020c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:246 */
+			gpiod: gpio@42020c00 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:247 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:248 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:249 */
+				reg = < 0x42020c00 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:250 */
+				clocks = < &rcc 0x8c 0x8 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:251 */
+			};
+
+			/* node '/soc/pin-controller@42020000/gpio@42021000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:254 */
+			gpioe: gpio@42021000 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:255 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:256 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:257 */
+				reg = < 0x42021000 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:258 */
+				clocks = < &rcc 0x8c 0x10 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:259 */
+				phandle = < 0xa >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:952 */
+			};
+
+			/* node '/soc/pin-controller@42020000/gpio@42021800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:262 */
+			gpiog: gpio@42021800 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:263 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:264 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:265 */
+				reg = < 0x42021800 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:266 */
+				clocks = < &rcc 0x8c 0x40 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:267 */
+			};
+
+			/* node '/soc/pin-controller@42020000/gpio@42021c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:270 */
+			gpioh: gpio@42021c00 {
+				compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:271 */
+				gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:272 */
+				#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:273 */
+				reg = < 0x42021c00 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:274 */
+				clocks = < &rcc 0x8c 0x80 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:275 */
+			};
+
+			/* node '/soc/pin-controller@42020000/analog_pa13' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:181 */
+			analog_pa13: analog_pa13 {
+				pinmux = < 0x1b0 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:182 */
+				phandle = < 0x19 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1012 */
+			};
+
+			/* node '/soc/pin-controller@42020000/analog_pa14' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:185 */
+			analog_pa14: analog_pa14 {
+				pinmux = < 0x1d0 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:186 */
+				phandle = < 0x1a >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1012 */
+			};
+
+			/* node '/soc/pin-controller@42020000/analog_pa15' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:189 */
+			analog_pa15: analog_pa15 {
+				pinmux = < 0x1f0 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:190 */
+				phandle = < 0x1b >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1012 */
+			};
+
+			/* node '/soc/pin-controller@42020000/analog_pb3' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:205 */
+			analog_pb3: analog_pb3 {
+				pinmux = < 0x270 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:206 */
+				phandle = < 0x1c >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1012 */
+			};
+
+			/* node '/soc/pin-controller@42020000/analog_pb4' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:209 */
+			analog_pb4: analog_pb4 {
+				pinmux = < 0x290 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:210 */
+				phandle = < 0x1d >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1012 */
+			};
+
+			/* node '/soc/pin-controller@42020000/debug_jtms_swdio_pa13' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1032 */
+			debug_jtms_swdio_pa13: debug_jtms_swdio_pa13 {
+				pinmux = < 0x1a0 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1033 */
+				phandle = < 0x14 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1009 */
+			};
+
+			/* node '/soc/pin-controller@42020000/debug_jtck_swclk_pa14' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1036 */
+			debug_jtck_swclk_pa14: debug_jtck_swclk_pa14 {
+				pinmux = < 0x1c0 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1037 */
+				phandle = < 0x15 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1009 */
+			};
+
+			/* node '/soc/pin-controller@42020000/debug_jtdi_pa15' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1040 */
+			debug_jtdi_pa15: debug_jtdi_pa15 {
+				pinmux = < 0x1e0 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1041 */
+				phandle = < 0x16 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1009 */
+			};
+
+			/* node '/soc/pin-controller@42020000/debug_jtdo_swo_pb3' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1044 */
+			debug_jtdo_swo_pb3: debug_jtdo_swo_pb3 {
+				pinmux = < 0x260 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1045 */
+				phandle = < 0x17 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1009 */
+			};
+
+			/* node '/soc/pin-controller@42020000/debug_jtrst_pb4' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1048 */
+			debug_jtrst_pb4: debug_jtrst_pb4 {
+				pinmux = < 0x280 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:1049 */
+				phandle = < 0x18 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1009 */
+			};
+
+			/* node '/soc/pin-controller@42020000/lpuart1_rx_pc0' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2504 */
+			lpuart1_rx_pc0: lpuart1_rx_pc0 {
+				pinmux = < 0x408 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2505 */
+				phandle = < 0x6 >;  /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:75 */
+			};
+
+			/* node '/soc/pin-controller@42020000/lpuart1_tx_pc1' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2570 */
+			lpuart1_tx_pc1: lpuart1_tx_pc1 {
+				pinmux = < 0x428 >; /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2571 */
+				bias-pull-up;       /* in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2572 */
+				phandle = < 0x5 >;  /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:75 */
+			};
+
+			/* node '/soc/pin-controller@42020000/usb_otg_fs_dm_pa11' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2644 */
+			usb_otg_fs_dm_pa11: usb_otg_fs_dm_pa11 {
+				pinmux = < 0x16a >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:22 */
+				phandle = < 0xe >;  /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:82 */
+			};
+
+			/* node '/soc/pin-controller@42020000/usb_otg_fs_dp_pa12' defined in modules/hal/stm32/dts/st/u5/stm32u575vitxq-pinctrl.dtsi:2648 */
+			usb_otg_fs_dp_pa12: usb_otg_fs_dp_pa12 {
+				pinmux = < 0x18a >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:26 */
+				phandle = < 0xf >;  /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:82 */
+			};
+		};
+
+		/* node '/soc/watchdog@40003000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:279 */
+		iwdg: watchdog@40003000 {
+			compatible = "st,stm32-watchdog"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:280 */
+			reg = < 0x40003000 0x400 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:281 */
+			interrupts = < 0x1b 0x0 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:282 */
+			status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:283 */
+		};
+
+		/* node '/soc/watchdog@40002c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:286 */
+		wwdg: wwdg1: watchdog@40002c00 {
+			compatible = "st,stm32-window-watchdog"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:287 */
+			reg = < 0x40002c00 0x1000 >;             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:288 */
+			clocks = < &rcc 0x9c 0x800 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:289 */
+			interrupts = < 0x0 0x7 >;                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:290 */
+			status = "disabled";                     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:291 */
+		};
+
+		/* node '/soc/memory@40036400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:294 */
+		backup_sram: memory@40036400 {
+			compatible = "zephyr,memory-region",
+			             "st,stm32-backup-sram";  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:295 */
+			reg = < 0x40036400 0x800 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:296 */
+			clocks = < &rcc 0x88 0x10020000 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:298 */
+			zephyr,memory-region = "BACKUP_SRAM"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:299 */
+			status = "disabled";                  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:300 */
+		};
+
+		/* node '/soc/serial@40013800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:303 */
+		usart1: serial@40013800 {
+			compatible = "st,stm32-usart",
+			             "st,stm32-uart";  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:304 */
+			reg = < 0x40013800 0x400 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:305 */
+			clocks = < &rcc 0xa4 0x4000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:306 */
+			resets = < &rctl 0xf8e >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:307 */
+			interrupts = < 0x3d 0x0 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:308 */
+			status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:309 */
+		};
+
+		/* node '/soc/serial@40004800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:312 */
+		usart3: serial@40004800 {
+			compatible = "st,stm32-usart",
+			             "st,stm32-uart";   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:313 */
+			reg = < 0x40004800 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:314 */
+			clocks = < &rcc 0x9c 0x40000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:315 */
+			resets = < &rctl 0xe92 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:316 */
+			interrupts = < 0x3f 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:317 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:318 */
+		};
+
+		/* node '/soc/serial@40004c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:321 */
+		uart4: serial@40004c00 {
+			compatible = "st,stm32-uart";   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:322 */
+			reg = < 0x40004c00 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:323 */
+			clocks = < &rcc 0x9c 0x80000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:324 */
+			resets = < &rctl 0xe93 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:325 */
+			interrupts = < 0x40 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:326 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:327 */
+		};
+
+		/* node '/soc/serial@40005000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:330 */
+		uart5: serial@40005000 {
+			compatible = "st,stm32-uart";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:331 */
+			reg = < 0x40005000 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:332 */
+			clocks = < &rcc 0x9c 0x100000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:333 */
+			resets = < &rctl 0xe94 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:334 */
+			interrupts = < 0x41 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:335 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:336 */
+		};
+
+		/* node '/soc/serial@46002400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:339 */
+		lpuart1: serial@46002400 {
+			compatible = "st,stm32-lpuart",
+			             "st,stm32-uart";                    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:340 */
+			reg = < 0x46002400 0x400 >;                      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:341 */
+			clocks = < &rcc 0xa8 0x40 >;                     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:342 */
+			resets = < &rctl 0x1006 >;                       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:343 */
+			interrupts = < 0x42 0x0 >;                       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:344 */
+			pinctrl-0 = < &lpuart1_tx_pc1 &lpuart1_rx_pc0 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:75 */
+			pinctrl-names = "default";                       /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:76 */
+			current-speed = < 0x1c200 >;                     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:77 */
+			status = "okay";                                 /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:78 */
+		};
+
+		/* node '/soc/spi@40013000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:348 */
+		spi1: spi@40013000 {
+			compatible = "st,stm32h7-spi",
+			             "st,stm32-spi-fifo",
+			             "st,stm32-spi";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:349 */
+			#address-cells = < 0x1 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:350 */
+			#size-cells = < 0x0 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:351 */
+			reg = < 0x40013000 0x400 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:352 */
+			interrupts = < 0x3b 0x5 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:353 */
+			clocks = < &rcc 0xa4 0x1000 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:354 */
+			status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:355 */
+		};
+
+		/* node '/soc/spi@40003800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:358 */
+		spi2: spi@40003800 {
+			compatible = "st,stm32h7-spi",
+			             "st,stm32-spi-fifo",
+			             "st,stm32-spi";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:359 */
+			#address-cells = < 0x1 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:360 */
+			#size-cells = < 0x0 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:361 */
+			reg = < 0x40003800 0x400 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:362 */
+			interrupts = < 0x3c 0x5 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:363 */
+			clocks = < &rcc 0x9c 0x4000 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:364 */
+			status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:365 */
+		};
+
+		/* node '/soc/spi@46002000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:368 */
+		spi3: spi@46002000 {
+			compatible = "st,stm32h7-spi",
+			             "st,stm32-spi-fifo",
+			             "st,stm32-spi";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:369 */
+			#address-cells = < 0x1 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:370 */
+			#size-cells = < 0x0 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:371 */
+			reg = < 0x46002000 0x400 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:372 */
+			interrupts = < 0x63 0x5 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:373 */
+			clocks = < &rcc 0xa8 0x20 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:374 */
+			status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:375 */
+		};
+
+		/* node '/soc/i2c@40005400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:378 */
+		i2c1: i2c@40005400 {
+			compatible = "st,stm32-i2c-v2";  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:379 */
+			clock-frequency = < 0x186a0 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:380 */
+			#address-cells = < 0x1 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:381 */
+			#size-cells = < 0x0 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:382 */
+			reg = < 0x40005400 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:383 */
+			clocks = < &rcc 0x9c 0x200000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:384 */
+			interrupts = < 0x37 0x0 >,
+			             < 0x38 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:385 */
+			interrupt-names = "event",
+			                  "error";       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:386 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:387 */
+			phandle = < 0x20 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1065 */
+		};
+
+		/* node '/soc/i2c@40005800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:390 */
+		i2c2: i2c@40005800 {
+			compatible = "st,stm32-i2c-v2";  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:391 */
+			clock-frequency = < 0x186a0 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:392 */
+			#address-cells = < 0x1 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:393 */
+			#size-cells = < 0x0 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:394 */
+			reg = < 0x40005800 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:395 */
+			clocks = < &rcc 0x9c 0x400000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:396 */
+			interrupts = < 0x39 0x0 >,
+			             < 0x3a 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:397 */
+			interrupt-names = "event",
+			                  "error";       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:398 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:399 */
+			phandle = < 0x21 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1073 */
+		};
+
+		/* node '/soc/i2c@46002800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:402 */
+		i2c3: i2c@46002800 {
+			compatible = "st,stm32-i2c-v2"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:403 */
+			clock-frequency = < 0x186a0 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:404 */
+			#address-cells = < 0x1 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:405 */
+			#size-cells = < 0x0 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:406 */
+			reg = < 0x46002800 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:407 */
+			clocks = < &rcc 0xa8 0x80 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:408 */
+			interrupts = < 0x58 0x0 >,
+			             < 0x59 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:409 */
+			interrupt-names = "event",
+			                  "error";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:410 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:411 */
+			phandle = < 0x22 >;             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1081 */
+		};
+
+		/* node '/soc/i2c@40008400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:414 */
+		i2c4: i2c@40008400 {
+			compatible = "st,stm32-i2c-v2"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:415 */
+			clock-frequency = < 0x186a0 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:416 */
+			#address-cells = < 0x1 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:417 */
+			#size-cells = < 0x0 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:418 */
+			reg = < 0x40008400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:419 */
+			clocks = < &rcc 0xa0 0x2 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:420 */
+			interrupts = < 0x65 0x0 >,
+			             < 0x64 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:421 */
+			interrupt-names = "event",
+			                  "error";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:422 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:423 */
+			phandle = < 0x23 >;             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1089 */
+		};
+
+		/* node '/soc/timers@46004400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:426 */
+		lptim1: timers@46004400 {
+			compatible = "st,stm32-lptim"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:427 */
+			#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:428 */
+			#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:429 */
+			reg = < 0x46004400 0x400 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:430 */
+			clocks = < &rcc 0xa8 0x800 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:431 */
+			interrupts = < 0x43 0x1 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:432 */
+			interrupt-names = "wakeup";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:433 */
+			status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:434 */
+		};
+
+		/* node '/soc/timers@40009400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:437 */
+		lptim2: timers@40009400 {
+			compatible = "st,stm32-lptim"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:438 */
+			#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:439 */
+			#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:440 */
+			reg = < 0x40009400 0x400 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:441 */
+			clocks = < &rcc 0xa0 0x20 >;   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:442 */
+			interrupts = < 0x44 0x0 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:443 */
+			interrupt-names = "global";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:444 */
+			status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:445 */
+		};
+
+		/* node '/soc/timers@46004800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:448 */
+		lptim3: timers@46004800 {
+			compatible = "st,stm32-lptim"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:449 */
+			#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:450 */
+			#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:451 */
+			reg = < 0x46004800 0x400 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:452 */
+			clocks = < &rcc 0xa8 0x1000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:453 */
+			interrupts = < 0x62 0x0 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:454 */
+			interrupt-names = "global";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:455 */
+			status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:456 */
+		};
+
+		/* node '/soc/timers@46004c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:459 */
+		lptim4: timers@46004c00 {
+			compatible = "st,stm32-lptim"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:460 */
+			#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:461 */
+			#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:462 */
+			reg = < 0x46004c00 0x400 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:463 */
+			clocks = < &rcc 0xa8 0x2000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:464 */
+			interrupts = < 0x6e 0x0 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:465 */
+			interrupt-names = "global";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:466 */
+			status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:467 */
+		};
+
+		/* node '/soc/rtc@46007800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:470 */
+		rtc: rtc@46007800 {
+			compatible = "st,stm32-rtc";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:471 */
+			reg = < 0x46007800 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:472 */
+			interrupts = < 0x2 0x0 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:473 */
+			clocks = < &rcc 0xa8 0x200000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:474 */
+			prescaler = < 0x8000 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:475 */
+			alarms-count = < 0x2 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:476 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:477 */
+		};
+
+		/* node '/soc/sai1@40015404' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:480 */
+		sai1_a: sai1@40015404 {
+			compatible = "st,stm32-sai";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:481 */
+			#address-cells = < 0x1 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:482 */
+			#size-cells = < 0x0 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:483 */
+			reg = < 0x40015404 0x20 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:484 */
+			clocks = < &rcc 0xa4 0x200000 >,
+			         < &rcc 0x12 0x4500e4 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:485 */
+			dmas = < &gpdma1 0x1 0x24 0x22800 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:487 */
+			status = "disabled";                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:489 */
+		};
+
+		/* node '/soc/sai1@40015424' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:492 */
+		sai1_b: sai1@40015424 {
+			compatible = "st,stm32-sai";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:493 */
+			#address-cells = < 0x1 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:494 */
+			#size-cells = < 0x0 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:495 */
+			reg = < 0x40015424 0x20 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:496 */
+			clocks = < &rcc 0xa4 0x200000 >,
+			         < &rcc 0x12 0x4500e4 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:497 */
+			dmas = < &gpdma1 0x0 0x25 0x22800 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:499 */
+			status = "disabled";                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:501 */
+		};
+
+		/* node '/soc/timers@40012c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:504 */
+		timers1: timers@40012c00 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:505 */
+			reg = < 0x40012c00 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:506 */
+			clocks = < &rcc 0xa4 0x800 >,
+			         < &rcc 0xe 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:507 */
+			resets = < &rctl 0xf8b >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:509 */
+			interrupts = < 0x29 0x0 >,
+			             < 0x2a 0x0 >,
+			             < 0x2b 0x0 >,
+			             < 0x2c 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:510 */
+			interrupt-names = "brk",
+			                  "up",
+			                  "trgcom",
+			                  "cc";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:511 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:512 */
+
+			/* node '/soc/timers@40012c00/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:514 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:515 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:516 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:517 */
+			};
+
+			/* node '/soc/timers@40012c00/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:520 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:521 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:522 */
+			};
+
+			/* node '/soc/timers@40012c00/qdec' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:525 */
+			qdec {
+				compatible = "st,stm32-qdec";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:526 */
+				st,input-filter-level = < 0x0 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:527 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:528 */
+			};
+		};
+
+		/* node '/soc/timers@40000000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:532 */
+		timers2: timers@40000000 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:533 */
+			reg = < 0x40000000 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:534 */
+			clocks = < &rcc 0x9c 0x1 >,
+			         < &rcc 0xd 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:535 */
+			resets = < &rctl 0xe80 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:537 */
+			interrupts = < 0x2d 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:538 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:539 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:540 */
+
+			/* node '/soc/timers@40000000/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:542 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:543 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:544 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:545 */
+			};
+
+			/* node '/soc/timers@40000000/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:548 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:549 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:550 */
+			};
+
+			/* node '/soc/timers@40000000/qdec' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:553 */
+			qdec {
+				compatible = "st,stm32-qdec";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:554 */
+				st,input-filter-level = < 0x0 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:555 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:556 */
+			};
+		};
+
+		/* node '/soc/timers@40000400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:560 */
+		timers3: timers@40000400 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:561 */
+			reg = < 0x40000400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:562 */
+			clocks = < &rcc 0x9c 0x2 >,
+			         < &rcc 0xd 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:563 */
+			resets = < &rctl 0xe81 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:565 */
+			interrupts = < 0x2e 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:566 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:567 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:568 */
+
+			/* node '/soc/timers@40000400/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:570 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:571 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:572 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:573 */
+			};
+
+			/* node '/soc/timers@40000400/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:576 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:577 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:578 */
+			};
+
+			/* node '/soc/timers@40000400/qdec' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:581 */
+			qdec {
+				compatible = "st,stm32-qdec";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:582 */
+				st,input-filter-level = < 0x0 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:583 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:584 */
+			};
+		};
+
+		/* node '/soc/timers@40000800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:588 */
+		timers4: timers@40000800 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:589 */
+			reg = < 0x40000800 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:590 */
+			clocks = < &rcc 0x9c 0x4 >,
+			         < &rcc 0xd 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:591 */
+			resets = < &rctl 0xe82 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:593 */
+			interrupts = < 0x2f 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:594 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:595 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:596 */
+
+			/* node '/soc/timers@40000800/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:598 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:599 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:600 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:601 */
+			};
+
+			/* node '/soc/timers@40000800/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:604 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:605 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:606 */
+			};
+
+			/* node '/soc/timers@40000800/qdec' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:609 */
+			qdec {
+				compatible = "st,stm32-qdec";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:610 */
+				st,input-filter-level = < 0x0 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:611 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:612 */
+			};
+		};
+
+		/* node '/soc/timers@40000c00' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:616 */
+		timers5: timers@40000c00 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:617 */
+			reg = < 0x40000c00 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:618 */
+			clocks = < &rcc 0x9c 0x8 >,
+			         < &rcc 0xd 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:619 */
+			resets = < &rctl 0xe83 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:621 */
+			interrupts = < 0x30 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:622 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:623 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:624 */
+
+			/* node '/soc/timers@40000c00/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:626 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:627 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:628 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:629 */
+			};
+
+			/* node '/soc/timers@40000c00/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:632 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:633 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:634 */
+			};
+
+			/* node '/soc/timers@40000c00/qdec' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:637 */
+			qdec {
+				compatible = "st,stm32-qdec";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:638 */
+				st,input-filter-level = < 0x0 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:639 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:640 */
+			};
+		};
+
+		/* node '/soc/timers@40001000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:644 */
+		timers6: timers@40001000 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:645 */
+			reg = < 0x40001000 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:646 */
+			clocks = < &rcc 0x9c 0x10 >,
+			         < &rcc 0xd 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:647 */
+			resets = < &rctl 0xe84 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:649 */
+			interrupts = < 0x31 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:650 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:651 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:652 */
+
+			/* node '/soc/timers@40001000/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:654 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:655 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:656 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:657 */
+			};
+
+			/* node '/soc/timers@40001000/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:660 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:661 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:662 */
+			};
+		};
+
+		/* node '/soc/timers@40001400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:666 */
+		timers7: timers@40001400 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:667 */
+			reg = < 0x40001400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:668 */
+			clocks = < &rcc 0x9c 0x20 >,
+			         < &rcc 0xd 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:669 */
+			resets = < &rctl 0xe85 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:671 */
+			interrupts = < 0x32 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:672 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:673 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:674 */
+
+			/* node '/soc/timers@40001400/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:676 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:677 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:678 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:679 */
+			};
+
+			/* node '/soc/timers@40001400/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:682 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:683 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:684 */
+			};
+		};
+
+		/* node '/soc/timers@40013400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:688 */
+		timers8: timers@40013400 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:689 */
+			reg = < 0x40013400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:690 */
+			clocks = < &rcc 0xa4 0x2000 >,
+			         < &rcc 0xe 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:691 */
+			resets = < &rctl 0xf8d >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:693 */
+			interrupts = < 0x33 0x0 >,
+			             < 0x34 0x0 >,
+			             < 0x35 0x0 >,
+			             < 0x36 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:694 */
+			interrupt-names = "brk",
+			                  "up",
+			                  "trgcom",
+			                  "cc";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:695 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:696 */
+
+			/* node '/soc/timers@40013400/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:698 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:699 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:700 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:701 */
+			};
+
+			/* node '/soc/timers@40013400/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:704 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:705 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:706 */
+			};
+
+			/* node '/soc/timers@40013400/qdec' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:709 */
+			qdec {
+				compatible = "st,stm32-qdec";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:710 */
+				st,input-filter-level = < 0x0 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:711 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:712 */
+			};
+		};
+
+		/* node '/soc/timers@40014000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:716 */
+		timers15: timers@40014000 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:717 */
+			reg = < 0x40014000 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:718 */
+			clocks = < &rcc 0xa4 0x10000 >,
+			         < &rcc 0xe 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:719 */
+			resets = < &rctl 0xf90 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:721 */
+			interrupts = < 0x45 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:722 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:723 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:724 */
+
+			/* node '/soc/timers@40014000/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:726 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:727 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:728 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:729 */
+			};
+
+			/* node '/soc/timers@40014000/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:732 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:733 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:734 */
+			};
+		};
+
+		/* node '/soc/timers@40014400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:738 */
+		timers16: timers@40014400 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:739 */
+			reg = < 0x40014400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:740 */
+			clocks = < &rcc 0xa4 0x20000 >,
+			         < &rcc 0xe 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:741 */
+			resets = < &rctl 0xf91 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:743 */
+			interrupts = < 0x46 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:744 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:745 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:746 */
+
+			/* node '/soc/timers@40014400/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:748 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:749 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:750 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:751 */
+			};
+
+			/* node '/soc/timers@40014400/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:754 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:755 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:756 */
+			};
+		};
+
+		/* node '/soc/timers@40014800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:760 */
+		timers17: timers@40014800 {
+			compatible = "st,stm32-timers"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:761 */
+			reg = < 0x40014800 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:762 */
+			clocks = < &rcc 0xa4 0x40000 >,
+			         < &rcc 0xe 0xff >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:763 */
+			resets = < &rctl 0xf92 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:765 */
+			interrupts = < 0x47 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:766 */
+			interrupt-names = "global";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:767 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:768 */
+
+			/* node '/soc/timers@40014800/pwm' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:770 */
+			pwm {
+				compatible = "st,stm32-pwm"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:771 */
+				status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:772 */
+				#pwm-cells = < 0x3 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:773 */
+			};
+
+			/* node '/soc/timers@40014800/counter' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:776 */
+			counter {
+				compatible = "st,stm32-counter"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:777 */
+				status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:778 */
+			};
+		};
+
+		/* node '/soc/spi@420d1400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:782 */
+		octospi1: spi@420d1400 {
+			compatible = "st,stm32-ospi";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:783 */
+			reg = < 0x420d1400 0x400 >,
+			      < 0x90000000 0x10000000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:784 */
+			interrupts = < 0x4c 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:785 */
+			clock-names = "ospix",
+			              "ospi-ker",
+			              "ospi-mgr";        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:786 */
+			clocks = < &rcc 0x90 0x10 >,
+			         < &rcc 0x1 0x3400e4 >,
+			         < &rcc 0x8c 0x200000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:787 */
+			#address-cells = < 0x1 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:790 */
+			#size-cells = < 0x0 >;           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:791 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:792 */
+		};
+
+		/* node '/soc/spi@420d2400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:795 */
+		octospi2: spi@420d2400 {
+			compatible = "st,stm32-ospi";    /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:59 */
+			reg = < 0x420d2400 0x400 >,
+			      < 0x70000000 0x10000000 >; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:60 */
+			interrupts = < 0x78 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:61 */
+			clock-names = "ospix",
+			              "ospi-ker",
+			              "ospi-mgr";        /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:62 */
+			clocks = < &rcc 0x90 0x100 >,
+			         < &rcc 0x1 0x3400e4 >,
+			         < &rcc 0x8c 0x200000 >; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:63 */
+			#address-cells = < 0x1 >;        /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:66 */
+			#size-cells = < 0x0 >;           /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:67 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:68 */
+		};
+
+		/* node '/soc/rng@420c0800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:808 */
+		rng: rng@420c0800 {
+			compatible = "st,stm32-rng";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:809 */
+			reg = < 0x420c0800 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:810 */
+			clocks = < &rcc 0x8c 0x40000 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:811 */
+			interrupts = < 0x5e 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:812 */
+			nist-config = < 0xf60d00 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:813 */
+			health-test-config = < 0x9aae >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:814 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:815 */
+		};
+
+		/* node '/soc/sdmmc@420c8000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:827 */
+		sdmmc1: sdmmc@420c8000 {
+			compatible = "st,stm32-sdmmc";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:828 */
+			reg = < 0x420c8000 0x400 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:829 */
+			clocks = < &rcc 0x8c 0x8000000 >,
+			         < &rcc 0x6 0xe00e4 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:830 */
+			resets = < &rctl 0xc9b >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:832 */
+			interrupts = < 0x4e 0x0 >;        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:833 */
+			status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:834 */
+		};
+
+		/* node '/soc/dac@46021800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:837 */
+		dac1: dac@46021800 {
+			compatible = "st,stm32-dac"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:838 */
+			reg = < 0x46021800 0x400 >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:839 */
+			clocks = < &rcc 0x94 0x40 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:840 */
+			status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:841 */
+			#io-channel-cells = < 0x1 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:842 */
+		};
+
+		/* node '/soc/adc@42028000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:845 */
+		adc1: adc@42028000 {
+			compatible = "st,stm32-adc";                                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:846 */
+			reg = < 0x42028000 0x400 >;                                  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:847 */
+			clocks = < &rcc 0x8c 0x400 >,
+			         < &rcc 0x9 0x4c00e8 >;                              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:848 */
+			clock-names = "adcx",
+			              "adc_ker";                                     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:850 */
+			interrupts = < 0x25 0x0 >;                                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:851 */
+			#io-channel-cells = < 0x1 >;                                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:852 */
+			resolutions = < 0x70620c 0x61620c 0x52620c 0x43620c >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:853 */
+			sampling-times = < 0x5 0x6 0xc 0x14 0x24 0x44 0x187 0x32e >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:857 */
+			st,adc-clock-source = "ASYNC";                               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:858 */
+			st,adc-sequencer = "programmable";                           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:859 */
+			st,adc-oversampler = "extended";                             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:860 */
+			st,adc-internal-regulator = "startup-hw-status";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:861 */
+			st,adc-has-deep-powerdown;                                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:862 */
+			st,adc-has-channel-preselection;                             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:863 */
+			st,adc-has-differential-support;                             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:864 */
+			status = "disabled";                                         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:865 */
+			phandle = < 0x1e >;                                          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1025 */
+		};
+
+		/* node '/soc/adc@46021000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:868 */
+		adc4: adc@46021000 {
+			compatible = "st,stm32-adc";                               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:869 */
+			reg = < 0x46021000 0x400 >;                                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:870 */
+			clocks = < &rcc 0x94 0x20 >,
+			         < &rcc 0x9 0x4c00e8 >;                            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:871 */
+			clock-names = "adcx",
+			              "adc_ker";                                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:873 */
+			interrupts = < 0x71 0x0 >;                                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:874 */
+			#io-channel-cells = < 0x1 >;                               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:875 */
+			resolutions = < 0x60620c 0x51620c 0x42620c 0x33620c >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:876 */
+			sampling-times = < 0x2 0x4 0x8 0xd 0x14 0x28 0x50 0x32f >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:880 */
+			num-sampling-time-common-channels = < 0x2 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:881 */
+			st,adc-clock-source = "ASYNC";                             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:882 */
+			st,adc-sequencer = "fixed";                                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:883 */
+			st,adc-oversampler = "minimal";                            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:884 */
+			st,adc-internal-regulator = "startup-hw-status";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:885 */
+			status = "disabled";                                       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:886 */
+			phandle = < 0x1f >;                                        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1043 */
+		};
+
+		/* node '/soc/can@4000a400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:889 */
+		fdcan1: can@4000a400 {
+			compatible = "st,stm32-fdcan";                         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:890 */
+			reg = < 0x4000a400 0x400 >,
+			      < 0x4000ac00 0x350 >;                            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:891 */
+			reg-names = "m_can",
+			            "message_ram";                             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:892 */
+			interrupts = < 0x27 0x0 >,
+			             < 0x28 0x0 >;                             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:893 */
+			interrupt-names = "int0",
+			                  "int1";                              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:894 */
+			clocks = < &rcc 0xa0 0x200 >;                          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:895 */
+			bosch,mram-cfg = < 0x0 0x1c 0x8 0x3 0x3 0x0 0x3 0x3 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:896 */
+			status = "disabled";                                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:897 */
+		};
+
+		/* node '/soc/dma@40020000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:900 */
+		gpdma1: dma@40020000 {
+			compatible = "st,stm32u5-dma";                                                                  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:901 */
+			#dma-cells = < 0x3 >;                                                                           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:902 */
+			reg = < 0x40020000 0x400 >;                                                                     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:903 */
+			interrupts = < 0x1d 0x0 0x1e 0x0 0x1f 0x0 0x20 0x0 0x21 0x0 0x22 0x0 0x23 0x0 0x24 0x0 0x50 0x0
+			               0x51 0x0 0x52 0x0 0x53 0x0 0x54 0x0 0x55 0x0 0x56 0x0 0x57 0x0 >;                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:904 */
+			clocks = < &rcc 0x88 0x1 >;                                                                     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:906 */
+			dma-channels = < 0x10 >;                                                                        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:907 */
+			dma-requests = < 0x72 >;                                                                        /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:908 */
+			dma-offset = < 0x0 >;                                                                           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:909 */
+			status = "disabled";                                                                            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:910 */
+			phandle = < 0x7 >;                                                                              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:487 */
+		};
+
+		/* node '/soc/hash@420c0400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:913 */
+		hash: hash@420c0400 {
+			compatible = "st,stm32-hash";   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:914 */
+			reg = < 0x420c0400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:915 */
+			clocks = < &rcc 0x8c 0x20000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:916 */
+			resets = < &rctl 0xc91 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:917 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:918 */
+		};
+
+		/* node '/soc/vrefbuf@46007400' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:921 */
+		vrefbuf: vrefbuf@46007400 {
+			compatible = "st,stm32-vrefbuf"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:922 */
+			reg = < 0x46007400 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:923 */
+			clocks = < &rcc 0xa8 0x100000 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:924 */
+			resets = < &rctl 0x1014 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:925 */
+			ref-voltages = < 0x16e360 >,
+			               < 0x1b7740 >,
+			               < 0x1f4000 >,
+			               < 0x2625a0 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:926 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:927 */
+		};
+
+		/* node '/soc/power@46020800' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:930 */
+		pwr: power@46020800 {
+			compatible = "st,stm32u5-pwr",
+			             "st,stm32-dualreg-pwr",
+			             "st,stm32-pwr";         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:931 */
+			reg = < 0x46020800 0x400 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:932 */
+			status = "disabled";                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:933 */
+			power-supply = "ldo";                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:940 */
+			wkup-pins-nb = < 0x8 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:942 */
+			wkup-pin-srcs = < 0x3 >;             /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:943 */
+			wkup-pins-pol;                       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:944 */
+			wkup-pins-pupd;                      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:945 */
+			#address-cells = < 0x1 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:947 */
+			#size-cells = < 0x0 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:948 */
+
+			/* node '/soc/power@46020800/wkup-pin@1' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:950 */
+			wkup-pin@1 {
+				reg = < 0x1 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:951 */
+				wkup-gpios = < &gpioa 0x0 0x1 >,
+				             < &gpiob 0x2 0x2 >,
+				             < &gpioe 0x4 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:952 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@2' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:957 */
+			wkup-pin@2 {
+				reg = < 0x2 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:958 */
+				wkup-gpios = < &gpioa 0x4 0x1 >,
+				             < &gpioc 0xd 0x2 >,
+				             < &gpioe 0x5 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:959 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@3' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:964 */
+			wkup-pin@3 {
+				reg = < 0x3 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:965 */
+				wkup-gpios = < &gpioe 0x6 0x1 >,
+				             < &gpioa 0x1 0x2 >,
+				             < &gpiob 0x6 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:966 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@4' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:971 */
+			wkup-pin@4 {
+				reg = < 0x4 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:972 */
+				wkup-gpios = < &gpioa 0x2 0x1 >,
+				             < &gpiob 0x1 0x2 >,
+				             < &gpiob 0x7 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:973 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@5' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:978 */
+			wkup-pin@5 {
+				reg = < 0x5 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:979 */
+				wkup-gpios = < &gpioc 0x5 0x1 >,
+				             < &gpioa 0x3 0x2 >,
+				             < &gpiob 0x8 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:980 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@6' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:985 */
+			wkup-pin@6 {
+				reg = < 0x6 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:986 */
+				wkup-gpios = < &gpiob 0x5 0x1 >,
+				             < &gpioa 0x5 0x2 >,
+				             < &gpioe 0x7 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:987 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@7' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:992 */
+			wkup-pin@7 {
+				reg = < 0x7 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:993 */
+				wkup-gpios = < &gpiob 0xf 0x1 >,
+				             < &gpioa 0x6 0x2 >,
+				             < &gpioe 0x8 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:994 */
+			};
+
+			/* node '/soc/power@46020800/wkup-pin@8' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:999 */
+			wkup-pin@8 {
+				reg = < 0x8 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1000 */
+				wkup-gpios = < &gpiof 0x2 0x1 >,
+				             < &gpioa 0x7 0x2 >,
+				             < &gpiob 0xa 0x4 >; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:83 */
+			};
+		};
+
+		/* node '/soc/serial@40004400' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:9 */
+		usart2: serial@40004400 {
+			compatible = "st,stm32-usart",
+			             "st,stm32-uart";   /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:10 */
+			reg = < 0x40004400 0x400 >;     /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:11 */
+			clocks = < &rcc 0x9c 0x20000 >; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:12 */
+			resets = < &rctl 0xe91 >;       /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:13 */
+			interrupts = < 0x3e 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:14 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:15 */
+		};
+
+		/* node '/soc/gpio@42021400' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:18 */
+		gpiof: gpio@42021400 {
+			compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:19 */
+			gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:20 */
+			#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:21 */
+			reg = < 0x42021400 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:22 */
+			clocks = < &rcc 0x8c 0x20 >;  /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:23 */
+			phandle = < 0xc >;            /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:83 */
+		};
+
+		/* node '/soc/gpio@42022000' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:26 */
+		gpioi: gpio@42022000 {
+			compatible = "st,stm32-gpio"; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:27 */
+			gpio-controller;              /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:28 */
+			#gpio-cells = < 0x2 >;        /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:29 */
+			reg = < 0x42022000 0x400 >;   /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:30 */
+			clocks = < &rcc 0x8c 0x100 >; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:31 */
+		};
+
+		/* node '/soc/sdmmc@420c8c00' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:34 */
+		sdmmc2: sdmmc@420c8c00 {
+			compatible = "st,stm32-sdmmc";     /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:35 */
+			reg = < 0x420c8c00 0x400 >;        /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:36 */
+			clocks = < &rcc 0x8c 0x10000000 >,
+			         < &rcc 0x6 0xe00e4 >;     /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:37 */
+			resets = < &rctl 0xc9c >;          /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:39 */
+			interrupts = < 0x4f 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:40 */
+			status = "disabled";               /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:41 */
+		};
+
+		/* node '/soc/memory-controller@420d0400' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:44 */
+		fmc: memory-controller@420d0400 {
+			compatible = "st,stm32-fmc"; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:45 */
+			reg = < 0x420d0400 0x400 >;  /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:46 */
+			clocks = < &rcc 0x90 0x1 >;  /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:47 */
+			status = "disabled";         /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:48 */
+
+			/* node '/soc/memory-controller@420d0400/sram' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:50 */
+			sram {
+				compatible = "st,stm32-fmc-nor-psram"; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:51 */
+				#address-cells = < 0x1 >;              /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:52 */
+				#size-cells = < 0x0 >;                 /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:53 */
+				status = "disabled";                   /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:54 */
+			};
+		};
+
+		/* node '/soc/ucpd@4000dc00' defined in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:71 */
+		ucpd1: ucpd@4000dc00 {
+			compatible = "st,stm32-ucpd";    /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:72 */
+			reg = < 0x4000dc00 0x400 >;      /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:73 */
+			clocks = < &rcc 0x9c 0x800000 >; /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:74 */
+			interrupts = < 0x6a 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:75 */
+			status = "disabled";             /* in zephyr/dts/arm/st/u5/stm32u5_extra.dtsi:76 */
+		};
+
+		/* node '/soc/otgfs@42040000' defined in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:12 */
+		usbotg_fs: otgfs@42040000 {
+			compatible = "st,stm32-otgfs";                           /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:13 */
+			reg = < 0x42040000 0x80000 >;                            /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:14 */
+			interrupts = < 0x49 0x0 >;                               /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:15 */
+			interrupt-names = "otgfs";                               /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:16 */
+			num-bidir-endpoints = < 0x6 >;                           /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:17 */
+			ram-size = < 0x500 >;                                    /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:18 */
+			maximum-speed = "full-speed";                            /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:19 */
+			clocks = < &rcc 0x8c 0x4000 >,
+			         < &rcc 0x6 0x3a00e0 >;                          /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:20 */
+			phys = < &otgfs_phy >;                                   /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:22 */
+			pinctrl-0 = < &usb_otg_fs_dm_pa11 &usb_otg_fs_dp_pa12 >; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:82 */
+			pinctrl-names = "default";                               /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:83 */
+			status = "okay";                                         /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:84 */
+
+			/* node '/soc/otgfs@42040000/cdc_acm_uart0' defined in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:86 */
+			cdc_acm_uart0: cdc_acm_uart0 {
+				compatible = "zephyr,cdc-acm-uart"; /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:87 */
+				label = "CDC_ACM_0";                /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:88 */
+				status = "okay";                    /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:89 */
+			};
+		};
+	};
+
+	/* node '/cpus' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:32 */
+	cpus {
+		#address-cells = < 0x1 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:33 */
+		#size-cells = < 0x0 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:34 */
+
+		/* node '/cpus/cpu@0' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:36 */
+		cpu0: cpu@0 {
+			device_type = "cpu";                         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:37 */
+			compatible = "arm,cortex-m33";               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:38 */
+			reg = < 0x0 >;                               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:39 */
+			#address-cells = < 0x1 >;                    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:40 */
+			#size-cells = < 0x1 >;                       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:41 */
+			cpu-power-states = < &stop0 &stop1 &stop2 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:42 */
+
+			/* node '/cpus/cpu@0/mpu@e000ed90' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:44 */
+			mpu: mpu@e000ed90 {
+				compatible = "arm,armv8m-mpu"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:45 */
+				reg = < 0xe000ed90 0x40 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:46 */
+			};
+		};
+
+		/* node '/cpus/power-states' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:50 */
+		power-states {
+
+			/* node '/cpus/power-states/state0' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:51 */
+			stop0: state0 {
+				compatible = "zephyr,power-state";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:52 */
+				power-state-name = "suspend-to-idle"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:53 */
+				substate-id = < 0x1 >;                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:54 */
+				min-residency-us = < 0x64 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:55 */
+				phandle = < 0x10 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:42 */
+			};
+
+			/* node '/cpus/power-states/state1' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:58 */
+			stop1: state1 {
+				compatible = "zephyr,power-state";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:59 */
+				power-state-name = "suspend-to-idle"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:60 */
+				substate-id = < 0x2 >;                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:61 */
+				min-residency-us = < 0x1f4 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:62 */
+				phandle = < 0x11 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:42 */
+			};
+
+			/* node '/cpus/power-states/state2' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:65 */
+			stop2: state2 {
+				compatible = "zephyr,power-state";    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:66 */
+				power-state-name = "suspend-to-idle"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:67 */
+				substate-id = < 0x3 >;                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:68 */
+				min-residency-us = < 0x384 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:69 */
+				phandle = < 0x12 >;                   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:42 */
+			};
+		};
+	};
+
+	/* node '/memory@20000000' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:82 */
+	sram0: memory@20000000 {
+		compatible = "zephyr,memory-region",
+		             "mmio-sram";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:83 */
+		zephyr,memory-region = "SRAM0";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:84 */
+		reg = < 0x20000000 0xc0000 >;        /* in zephyr/dts/arm/st/u5/stm32u575.dtsi:14 */
+	};
+
+	/* node '/clocks' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:87 */
+	clocks {
+
+		/* node '/clocks/clk-hse' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:88 */
+		clk_hse: clk-hse {
+			#clock-cells = < 0x0 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:89 */
+			compatible = "st,stm32-hse-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:90 */
+			status = "disabled";               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:91 */
+		};
+
+		/* node '/clocks/clk-hsi' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:94 */
+		clk_hsi: clk-hsi {
+			#clock-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:95 */
+			compatible = "fixed-clock";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:96 */
+			clock-frequency = < 0xf42400 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:97 */
+			status = "disabled";            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:98 */
+		};
+
+		/* node '/clocks/clk-hsi48' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:101 */
+		clk_hsi48: clk-hsi48 {
+			#clock-cells = < 0x0 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:102 */
+			compatible = "fixed-clock";      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:103 */
+			clock-frequency = < 0x2dc6c00 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:104 */
+			status = "okay";                 /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:31 */
+		};
+
+		/* node '/clocks/clk-msis' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:108 */
+		clk_msis: clk-msis {
+			#clock-cells = < 0x0 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:109 */
+			compatible = "st,stm32u5-msi-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:110 */
+			status = "okay";                     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:35 */
+			msi-range = < 0x4 >;                 /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:36 */
+			msi-pll-mode;                        /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:37 */
+			phandle = < 0x13 >;                  /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:49 */
+		};
+
+		/* node '/clocks/clk-msik' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:115 */
+		clk_msik: clk-msik {
+			#clock-cells = < 0x0 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:116 */
+			compatible = "st,stm32u5-msi-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:117 */
+			msi-range = < 0x4 >;                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:118 */
+			status = "disabled";                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:119 */
+		};
+
+		/* node '/clocks/clk-lse' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:122 */
+		clk_lse: clk-lse {
+			#clock-cells = < 0x0 >;            /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:123 */
+			compatible = "st,stm32-lse-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:124 */
+			clock-frequency = < 0x8000 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:125 */
+			driving-capability = < 0x2 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:126 */
+			status = "okay";                   /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:41 */
+		};
+
+		/* node '/clocks/clk-lsi' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:130 */
+		clk_lsi: clk-lsi {
+			#clock-cells = < 0x0 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:131 */
+			compatible = "fixed-clock";   /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:132 */
+			clock-frequency = < 0x7d00 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:133 */
+			status = "disabled";          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:134 */
+		};
+
+		/* node '/clocks/pll' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:137 */
+		pll1: pll: pll {
+			#clock-cells = < 0x0 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:138 */
+			compatible = "st,stm32u5-pll-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:139 */
+			div-m = < 0x1 >;                     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:45 */
+			mul-n = < 0x50 >;                    /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:46 */
+			div-q = < 0x2 >;                     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:47 */
+			div-r = < 0x2 >;                     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:48 */
+			clocks = < &clk_msis >;              /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:49 */
+			status = "okay";                     /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:50 */
+			phandle = < 0x2 >;                   /* in zephyr/boards/st/custom_u575vit6q/custom_u575vit6q.dts:54 */
+		};
+
+		/* node '/clocks/pll2' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:143 */
+		pll2: pll2 {
+			#clock-cells = < 0x0 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:144 */
+			compatible = "st,stm32u5-pll-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:145 */
+			status = "disabled";                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:146 */
+		};
+
+		/* node '/clocks/pll3' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:149 */
+		pll3: pll3 {
+			#clock-cells = < 0x0 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:150 */
+			compatible = "st,stm32u5-pll-clock"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:151 */
+			status = "disabled";                 /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:152 */
+		};
+	};
+
+	/* node '/mcos' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:156 */
+	mcos {
+
+		/* node '/mcos/mco1' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:157 */
+		mco1: mco1 {
+			compatible = "st,stm32-clock-mco"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:158 */
+			status = "disabled";               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:159 */
+		};
+	};
+
+	/* node '/swj_port' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1007 */
+	swj_port: swj_port {
+		compatible = "swj-connector";                                                                    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1008 */
+		pinctrl-0 = < &debug_jtms_swdio_pa13 &debug_jtck_swclk_pa14 &debug_jtdi_pa15 &debug_jtdo_swo_pb3
+		              &debug_jtrst_pb4 >;                                                                /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1009 */
+		pinctrl-1 = < &analog_pa13 &analog_pa14 &analog_pa15 &analog_pb3 &analog_pb4 >;                  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1012 */
+		pinctrl-names = "default",
+		                "sleep";                                                                         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1014 */
+	};
+
+	/* node '/dietemp' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1017 */
+	die_temp: dietemp {
+		compatible = "st,stm32-temp-cal"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1018 */
+		ts-cal1-addr = < 0xbfa0710 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1019 */
+		ts-cal2-addr = < 0xbfa0742 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1020 */
+		ts-cal1-temp = < 0x1e >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1021 */
+		ts-cal2-temp = < 0x82 >;          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1022 */
+		ts-cal-vrefanalog = < 0xbb8 >;    /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1023 */
+		ts-cal-resolution = < 0xe >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1024 */
+		io-channels = < &adc1 0x13 >;     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1025 */
+		status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1026 */
+	};
+
+	/* node '/vref_1' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1029 */
+	vref1: vref_1 {
+		compatible = "st,stm32-vref";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1030 */
+		vrefint-cal-addr = < 0xbfa07a5 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1031 */
+		vrefint-cal-mv = < 0xbb8 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1032 */
+		vrefint-cal-resolution = < 0xe >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1033 */
+		io-channels = < &adc1 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1034 */
+		status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1035 */
+	};
+
+	/* node '/vref_4' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1038 */
+	vref4: vref_4 {
+		compatible = "st,stm32-vref";     /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1039 */
+		vrefint-cal-addr = < 0xbfa07a5 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1040 */
+		vrefint-cal-mv = < 0xbb8 >;       /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1041 */
+		vrefint-cal-resolution = < 0xe >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1042 */
+		io-channels = < &adc4 0x0 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1043 */
+		status = "disabled";              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1044 */
+	};
+
+	/* node '/vbat_1' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1047 */
+	vbat1: vbat_1 {
+		compatible = "st,stm32-vbat"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1048 */
+		ratio = < 0x4 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1049 */
+		io-channels = < &adc1 0x12 >; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1050 */
+		status = "disabled";          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1051 */
+	};
+
+	/* node '/vbat_4' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1054 */
+	vbat4: vbat_4 {
+		compatible = "st,stm32-vbat"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1055 */
+		ratio = < 0x4 >;              /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1056 */
+		io-channels = < &adc4 0xe >;  /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1057 */
+		status = "disabled";          /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1058 */
+	};
+
+	/* node '/smbus1' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1061 */
+	smbus1: smbus1 {
+		compatible = "st,stm32-smbus"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1062 */
+		#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1063 */
+		#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1064 */
+		i2c = < &i2c1 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1065 */
+		status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1066 */
+	};
+
+	/* node '/smbus2' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1069 */
+	smbus2: smbus2 {
+		compatible = "st,stm32-smbus"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1070 */
+		#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1071 */
+		#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1072 */
+		i2c = < &i2c2 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1073 */
+		status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1074 */
+	};
+
+	/* node '/smbus3' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1077 */
+	smbus3: smbus3 {
+		compatible = "st,stm32-smbus"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1078 */
+		#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1079 */
+		#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1080 */
+		i2c = < &i2c3 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1081 */
+		status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1082 */
+	};
+
+	/* node '/smbus4' defined in zephyr/dts/arm/st/u5/stm32u5.dtsi:1085 */
+	smbus4: smbus4 {
+		compatible = "st,stm32-smbus"; /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1086 */
+		#address-cells = < 0x1 >;      /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1087 */
+		#size-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1088 */
+		i2c = < &i2c4 >;               /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1089 */
+		status = "disabled";           /* in zephyr/dts/arm/st/u5/stm32u5.dtsi:1090 */
+	};
+
+	/* node '/otgfs_phy' defined in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:27 */
+	otgfs_phy: otgfs_phy {
+		compatible = "usb-nop-xceiv"; /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:28 */
+		#phy-cells = < 0x0 >;         /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:29 */
+		phandle = < 0xd >;            /* in zephyr/dts/arm/st/u5/stm32u5_usbotg_fs.dtsi:22 */
+	};
+
+	/* node '/memory@28000000' defined in zephyr/dts/arm/st/u5/stm32u575.dtsi:17 */
+	sram1: memory@28000000 {
+		reg = < 0x28000000 0x4000 >; /* in zephyr/dts/arm/st/u5/stm32u575.dtsi:19 */
+	};
+};
